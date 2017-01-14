@@ -15,6 +15,7 @@
 int main() {
 	int size = NULL;
 	bool test = false;
+	//If reworked to use a dynamically allocated array redo the following 2 lines.
 	int matrix[3][3];
 	const int COLUMN = 3;
 	
@@ -23,6 +24,7 @@ int main() {
 		std::cout << "Please enter a size for the matrix (2 or 3)." << std::endl;
 		std::cin >> size;
 
+		//data validation check
 		if (size == 2 || size == 3)
 		{
 			readMatrix(*matrix, size);

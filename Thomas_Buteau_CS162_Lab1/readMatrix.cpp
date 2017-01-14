@@ -29,6 +29,8 @@ void readMatrix(int* matrix, int size)
 		}
 	}
 
+	//Required because array is actually 3 x 3. If redone as dynamically
+	//allocated array remove this section.
 	else if (size == 2)
 	{
 		int z = 0;

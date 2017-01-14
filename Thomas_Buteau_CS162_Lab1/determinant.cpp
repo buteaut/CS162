@@ -24,6 +24,7 @@ int determinant(const int m[][COLUMN], int size)
 
 	else if (size == 3)
 	{
+		//Hard coding is suboptimal, may come back later to redo
 		return m[0][0] * (m[1][1] * m[2][2] - m[1][2] * m[2][1])
 			   - m[0][1] * (m[1][0] * m[2][2] - m[1][2] * m[2][0])
 				+ m[0][2] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]);
