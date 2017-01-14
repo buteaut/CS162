@@ -21,7 +21,8 @@ int main() {
 	
 	while (test == false)
 	{
-		std::cout << "Please enter a size for the matrix (2 or 3)." << std::endl;
+		std::cout << "Please enter a size for the matrix." << std::endl;
+		std::cout << "2 for a 2X2 matrix or 3 for a 3X3 matrix." << std::endl;
 		std::cin >> size;
 
 		//data validation check
