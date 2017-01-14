@@ -13,7 +13,7 @@
 
 
 int main() {
-	int size = NULL;
+	int size;
 	bool test = false;
 	//If reworked to use a dynamically allocated array redo the following 2 lines.
 	int matrix[3][3];
