@@ -27,6 +27,9 @@
     <ClCompile Include="Ant.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="integerValidation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="menu.hpp">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Ant.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="integerValidation.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

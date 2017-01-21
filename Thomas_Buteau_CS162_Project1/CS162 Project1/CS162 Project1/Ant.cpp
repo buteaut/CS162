@@ -1,5 +1,5 @@
 /*********************************************************************************
-** Program name: Project1 (Ant Header File)
+** Program name: Project1 (Ant Implementation File)
 ** Author: Thomas Buteau
 ** Date: 1-17-17
 ** Description: Ant implementation file for project1. The Ant class is responsible 
