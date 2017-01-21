@@ -141,7 +141,7 @@ void menu()
 				rowAnt = atoi(strChoice.c_str());
 				strChoice = "";
 
-				while ((rowAnt < 0) || (rowAnt >= rowsGrid)) //verify input within range
+				while ((rowAnt < -1) || (rowAnt >= rowsGrid)) //verify input within range
 				{
 					std::cout << "Input outside of range. Please enter a number "
 						<< "between -1 and " << rowsGrid - 1 << "." << std::endl;
@@ -174,7 +174,7 @@ void menu()
 				columnAnt = atoi(strChoice.c_str());
 				strChoice = "";
 
-				while ((columnAnt < 0) || (columnAnt >= columnsGrid)) //verify input within range
+				while ((columnAnt < -1) || (columnAnt >= columnsGrid)) //verify input within range
 				{
 					std::cout << "Input outside of range. Please enter a number "
 						<< "between -1 and " << columnsGrid - 1 << "." << std::endl;

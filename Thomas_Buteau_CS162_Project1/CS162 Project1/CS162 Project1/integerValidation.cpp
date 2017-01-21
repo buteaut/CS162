@@ -29,6 +29,16 @@ bool intVal(std::string input, int length)
 			{
 				valid = false;
 			}
+			
+			//allows for negative numbers
+			if (i == 0 && input.length() > 1)
+			{
+				if (input.at(i) == '-')
+				{
+					valid = true;
+				}
+			}
+			
 		}
 	}
 
