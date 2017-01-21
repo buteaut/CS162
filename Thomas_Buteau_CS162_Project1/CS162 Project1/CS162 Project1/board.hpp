@@ -31,7 +31,19 @@ public:
 	
 	void edit(int row, int column, std::string value); //edits a location in 
 													   //the grid
-	Board(int rows, int columns, std::string OS); 
+	std::string getSymbol(int row, int column); //returns the symbol at a location
+
+	void setRows(int row);
+
+	void setColumns(int column);
+
+	void setOS(std::string OpSys);
+
+	void initializeGrid(int row, int column, std::string OpSys); //generates grid
+
+	Board();
+
+	//Board(int rows, int columns, std::string OS); 
 
 	~Board();
 };

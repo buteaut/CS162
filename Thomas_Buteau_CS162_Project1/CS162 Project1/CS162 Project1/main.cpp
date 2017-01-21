@@ -8,12 +8,13 @@
 
 #include "menu.hpp"
 #include "board.hpp"
-//#include "ant.hpp"
+#include "ant.hpp"
 
 int main() {
 
 	menu();
-	Board testBoard = Board(20, 20, "Windows");
+	Board testBoard;
+	testBoard.initializeGrid(20, 20, "Windows");
 	testBoard.draw(2);
 	if (testBoard.onBoard(2, 2))
 	{
@@ -21,6 +22,8 @@ int main() {
 	}
 	testBoard.edit(1, 1, "XX");
 	testBoard.draw(3);
-	//std::system("cls");
+
+	Ant a(5, 3, 30, 15, 15, "Windows");
+	a.move();
 	return 0;
 }

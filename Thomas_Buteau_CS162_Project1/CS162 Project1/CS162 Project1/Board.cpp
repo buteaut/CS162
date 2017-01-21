@@ -104,6 +104,82 @@ void Board::edit(int row, int column, std::string value)
 	grid[row][column] = value;
 }
 
+/*****************************************************************************
+**						Board::getSymbol
+** Description: returns the symbol at a location.
+**
+*****************************************************************************/
+std::string Board::getSymbol(int row, int column)
+{
+	return grid[row][column];
+}
+
+/*****************************************************************************
+**						Board::setRows
+** Description: Sets the row.
+**
+*****************************************************************************/
+void Board::setRows(int row)
+{
+	rows = row;
+}
+
+/*****************************************************************************
+**						Board::setColumns
+** Description: Sets the column.
+**
+*****************************************************************************/
+void Board::setColumns(int column)
+{
+	columns = column;
+}
+
+/*****************************************************************************
+**						Board::setOS
+** Description: Sets the column.
+**
+*****************************************************************************/
+void Board::setOS(std::string OpSys)
+{
+	OS = OpSys;
+}
+
+/*****************************************************************************
+**						Board::initializeGrid
+** Description: Sets the rows, columns, OS, and generates the grid.
+**
+*****************************************************************************/
+void Board::initializeGrid(int row, int column, std::string OpSys)
+{
+	setRows(row);
+	setColumns(column);
+	setOS(OpSys);
+
+	//generates 2D array of strings
+	grid = new std::string*[rows];
+	for (int i = 0; i < rows; i++)
+	{
+		grid[i] = new std::string[columns];
+	}
+
+	//filling grid initially
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < columns; j++)
+		{
+			grid[i][j] = "[]";
+		}
+	}
+
+}
+
+Board::Board()
+{
+	rows = 0;
+	columns = 0;
+	OS = "Windows";
+}
+/*
 Board::Board(int initialRows, int initialColumns, std::string initialOS)
 {
 	rows = initialRows;
@@ -126,7 +202,7 @@ Board::Board(int initialRows, int initialColumns, std::string initialOS)
 		}
 	}
 }
-
+*/
 Board::~Board()
 {
 	for (int i = 0; i < rows; i++)
