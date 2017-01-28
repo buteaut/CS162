@@ -11,17 +11,17 @@ LDFLAGS =
 #CXXFLAGS += -Wall
 #CXXFLAGS += -pedantic-errors
 
-OBJS = Lab1Main.o determinant.o readMatrix.o
+OBJS = main.o Ant.o Board.o menu.o integerValidation.o
 
-SRCS = Lab1Main.cpp determinant.cpp readMatrix.cpp
+SRCS = main.cpp Ant.cpp Board.cpp menu.cpp integerValidation.cpp
 
-HEADERS = determinant.hpp readMatrix.hpp
+HEADERS = Ant.hpp board.hpp menu.hpp integerValidation.hpp
 
-EXEC = "Lab1"
+EXEC = "Assignment1"
 
-all: Lab1
+all: Assignment1
 
-Lab1: ${OBJS} ${HEADERS}
+Assignment1: ${OBJS} ${HEADERS}
 	${CXX} ${LDFLAGS} ${OBJS} -o ${EXEC}
 
 ${OBJS}: ${SRCS}
