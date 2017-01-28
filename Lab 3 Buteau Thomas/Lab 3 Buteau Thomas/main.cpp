@@ -11,12 +11,21 @@
 #include <time.h>
 #include "Die.hpp"
 #include "LoadedDie.hpp"
+#include "Game.hpp"
 
 int main() {
 	std::srand(time(NULL));
 
+	//test block for Game class
+	Game *gameDie = new Game();
+	gameDie->menu();
+	/*
+	gameDie->setDie(20, false, 1);
+	gameDie->setDie(20, true, 2);
+	gameDie->play(20);
+	
 	//test block for Die class
-	Die *testDie = new Die(6);
+	Die *testDie = new Die(100);
 	int dieTotal = 0;
 	for (int i = 0; i < 20; i++)
 	{
@@ -28,7 +37,7 @@ int main() {
 	std::cout << std::endl;
 
 	//test block for LoadedDie class
-	LoadedDie *funDie = new LoadedDie(6);
+	Die *funDie = new LoadedDie(20);
 	dieTotal = 0;
 	for (int i = 0; i < 20; i++)
 	{
@@ -39,5 +48,9 @@ int main() {
 	std::cout << "The total for the loaded die is: " << dieTotal << std::endl;
 	std::cout << std::endl;
 	
+	delete testDie;
+	delete funDie;
+	delete gameDie;
+	*/
 	return 0;
 }

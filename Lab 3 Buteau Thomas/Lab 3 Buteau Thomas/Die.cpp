@@ -35,6 +35,6 @@ Die::~Die()
 *****************************************************************************/
 int Die::roll()
 {
-	std::cout << "Die is rolling." << std::endl;
+	//std::cout << "Die is rolling." << std::endl;   //test printout
 	return (rand() % numSides + 1);
 }

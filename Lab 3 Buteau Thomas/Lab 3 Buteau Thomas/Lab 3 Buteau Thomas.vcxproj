@@ -111,12 +111,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Die.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="integerValidation.cpp" />
     <ClCompile Include="LoadedDie.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Die.hpp" />
+    <ClInclude Include="Game.hpp" />
     <ClInclude Include="integerValidation.hpp" />
     <ClInclude Include="LoadedDie.hpp" />
   </ItemGroup>

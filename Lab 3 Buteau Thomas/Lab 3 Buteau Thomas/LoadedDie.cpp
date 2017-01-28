@@ -23,7 +23,7 @@ LoadedDie::LoadedDie(int numSides) : Die(numSides)
 *****************************************************************************/
 int LoadedDie::roll()
 {
-	std::cout << "Loaded die is rolling." << std::endl;
+	//std::cout << "Loaded die is rolling." << std::endl; //test printout
 	int temp1 = rand() % numSides + 1;
 	int temp2 = rand() % numSides + 1;
 

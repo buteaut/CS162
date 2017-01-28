@@ -16,4 +16,8 @@
 
 bool intVal(std::string input, int length);
 
+bool intValPos(std::string input, int length);
+
+bool intValPosRanged(std::string input, int length, int min, int max);
+
 #endif
