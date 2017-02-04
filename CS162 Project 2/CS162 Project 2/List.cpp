@@ -24,7 +24,10 @@ List::~List() //destructor
 	for (int i = 0; i < numItems; i++)
 	{
 		delete itemList[i];
+		
 	}
+	
+	delete itemList;
 }
 
 Item* List::generateItem()
@@ -71,16 +74,27 @@ Item* List::generateItem()
 
 void List::addItem()
 {
+	bool inArray = false;
 	Item* newItem = generateItem();
 	
-	//test only remove for production
-	if (numItems == 2)
+	//checks if item exists and adds to existing item as applicable
+	for (int i = 0; i < numItems; i++)
+	{
+		if (*newItem == *itemList[i])
+		{
+			inArray = true;
+			*itemList[i] + *newItem;
+		}
+	}
+	
+	//If itemList is full increase array size
+	if ((numItems == capacity) && (inArray == false))
 	{
 		arrayIncrease();
 	}
 
-
-	if (numItems < capacity)
+	//adds item
+	if ((numItems < capacity) && (inArray == false))
 	{		
 		numItems++;
 		itemList[numItems - 1] = newItem;
@@ -90,29 +104,27 @@ void List::addItem()
 
 void List::arrayIncrease()
 {
-	
-	Item** temp; // = new Item[capacity];
 	capacity++;
+	Item** temp;
 	temp = new Item*[capacity];
+	
+	//copies the Item pointers to temp array
 	for (int i = 0; i < numItems; i++)
 	{
 		temp[i] = itemList[i];
-		//temp[i] = *(itemList)[i];
 	}
 	
+	//clears itemList array
 	delete[] itemList;
 	itemList = NULL;
-	capacity++;
+	
+	//makes itemList a copy of temp
 	itemList = temp;
 
-	/*
-	//test only remove for production
-	for (int i = 0; i < numItems; i++)
-	{
-		std::cout << *(itemList[i]);
-	}
-	*/
-	std::cout << "Test" << std::endl;
+	//removes temp array
+	temp = NULL;
+	delete temp;
+
 }
 
 void List::arrayDecrease()
@@ -122,7 +134,40 @@ void List::arrayDecrease()
 
 void List::removeItem()
 {
-	std::cout << "Test" << std::endl;
+	std::string name;
+	bool inArray = false;
+	int itemLocation;
+	
+	std::cout << "What is the name of the item to remove? ";
+	std::cin >> name;
+	std::cout << std::endl;
+
+	for (int i = 0; i < numItems; i++)
+	{
+		if (*itemList[i] == name)
+		{
+			inArray = true;
+			itemLocation = i;
+			std::cout << "Item found in array." << std::endl;
+		}
+	}
+
+	if (inArray)
+	{
+		for (int i = itemLocation; i < (numItems - 1); i++)
+		{
+			itemList[i] = itemList[i + 1];
+		}
+
+		itemList[numItems] = NULL;
+		
+		numItems--;
+	}
+
+	if (!inArray)
+	{
+		std::cout << name << " was not found in the list." << std::endl;
+	}
 }
 
 void List::displayItems()

@@ -13,6 +13,7 @@
 int main() {
 	List *testList = new List();
 	testList->menu();
+	delete testList;
 
 	//Item class tests
 	/*
