@@ -2,9 +2,12 @@
 ** Program name: Project 2 (List Implementation File)
 ** Author: Thomas Buteau
 ** Date: 2-5-17
-** Description: List implementation file for Project 2.
-
-
+** Description: List implementation file for Project 2. Contains an array of Item 
+**				object pointers as well as ints to keep track of the array 
+**				capacity and number of spots used in the array. There are methods 
+**				to add Items, remove Items, generate Items, increase array size, 
+**				display Items, display total cost, and a menu driver method.
+**
 *********************************************************************************/
 
 #include "List.hpp"
@@ -13,23 +16,27 @@ List::List() //default constructor
 {
 	numItems = 0;
 	capacity = 4;
-	//Item* itemList[4] = { NULL, NULL, NULL, NULL };
-	//Item* itemList = new Item[capacity];
 	itemList = new Item*[capacity];
 	
 }
 
 List::~List() //destructor
 {
+
 	for (int i = 0; i < numItems; i++)
 	{
 		delete itemList[i];
-		
 	}
-	
-	delete itemList;
+
+	delete[] itemList;
 }
 
+/*****************************************************************************
+**						Item::generateItem
+** Description: Uses user input to generate and return a pointer to an Item
+**				object.
+**
+*****************************************************************************/
 Item* List::generateItem()
 {
 	std::string name;
@@ -72,6 +79,14 @@ Item* List::generateItem()
 	return new Item(name, quantity, qUnits, unitPrice);
 }
 
+/*****************************************************************************
+**						Item::addItem
+** Description: Calls generateItem then if that item is already in the 
+**				itemList it adds to the quantity of the existing item. If the
+**				item is not already in the list it will add it and increase
+**				itemList size if needed.
+**
+*****************************************************************************/
 void List::addItem()
 {
 	bool inArray = false;
@@ -84,6 +99,7 @@ void List::addItem()
 		{
 			inArray = true;
 			*itemList[i] + *newItem;
+			delete newItem;
 		}
 	}
 	
@@ -102,6 +118,11 @@ void List::addItem()
 
 }
 
+/*****************************************************************************
+**						Item::arrayIncrease
+** Description: Increases the size of the itemList array by 1.
+**
+*****************************************************************************/
 void List::arrayIncrease()
 {
 	capacity++;
@@ -123,15 +144,18 @@ void List::arrayIncrease()
 
 	//removes temp array
 	temp = NULL;
-	delete temp;
+	delete []temp;
 
 }
 
-void List::arrayDecrease()
-{
-	std::cout << "Test" << std::endl;
-}
-
+/*****************************************************************************
+**						Item::removeItem
+** Description: Looks through the itemArray for an Item object with a name
+**				that equals user input. If so it removes that Item object and
+**				moves Items down in the array as needed so that no empty spots
+**				exist. If the Item is not found it displays an error message.
+**
+*****************************************************************************/
 void List::removeItem()
 {
 	std::string name;
@@ -142,18 +166,20 @@ void List::removeItem()
 	std::cin >> name;
 	std::cout << std::endl;
 
+	//looks for the Item object with name.
 	for (int i = 0; i < numItems; i++)
 	{
 		if (*itemList[i] == name)
 		{
 			inArray = true;
 			itemLocation = i;
-			std::cout << "Item found in array." << std::endl;
 		}
 	}
 
+	//removes Item object and readjusts the array
 	if (inArray)
 	{
+		delete itemList[itemLocation];
 		for (int i = itemLocation; i < (numItems - 1); i++)
 		{
 			itemList[i] = itemList[i + 1];
@@ -162,17 +188,25 @@ void List::removeItem()
 		itemList[numItems] = NULL;
 		
 		numItems--;
+
+		std::cout << name << " removed from the list." << std::endl;
 	}
 
+	//error message, name not found
 	if (!inArray)
 	{
 		std::cout << name << " was not found in the list." << std::endl;
 	}
 }
 
+/*****************************************************************************
+**						Item::displayItems
+** Description: Uses the overloaded << operator for the Item class to print
+**				out all the Items in the array.
+**
+*****************************************************************************/
 void List::displayItems()
 {
-	//std::cout << "Test" << std::endl;
 	if (numItems > 0)
 	{
 		for (int i = 0; i < numItems; i++)
@@ -187,9 +221,14 @@ void List::displayItems()
 	}
 }
 
+/*****************************************************************************
+**						Item::displayTotal
+** Description: Calculates and prints out the total price for all Items in
+**				the array.
+**
+*****************************************************************************/
 void List::displayTotal()
 {
-	//std::cout << "Test" << std::endl;
 	double total = 0;
 	if (numItems > 0)
 	{
@@ -203,6 +242,12 @@ void List::displayTotal()
 
 }
 
+/*****************************************************************************
+**						Item::menu
+** Description: menu function allowing the user to display list Items, add or
+**				remove Items, or exit.
+**
+*****************************************************************************/
 void List::menu()
 {
 	std::string strChoice;
@@ -240,7 +285,6 @@ void List::menu()
 		if (choice == 2) //Add item
 		{
 			//add item
-			std::cout << "Add items" << std::endl;
 			addItem();
 		}
 

@@ -2,9 +2,14 @@
 ** Program name: Project 2 (Item Implementation File)
 ** Author: Thomas Buteau
 ** Date: 2-5-17
-** Description: Item implementation file for Project 2. 
-
-
+** Description: Item implementation file for Project 2. The Item class has 
+**				variables for item name, unit name, unit quantity, unit price, 
+**				and total price. There is a getTotalPrice method that returns 
+**				totalPrice, an increaseQuantity method that adds the quantity 
+**				argument to the	object quantity, and operator overloads for == 
+**				and +. There is	also a friend function to overload the 
+**				<< operator.
+**
 *********************************************************************************/
 
 #include "Item.hpp"
@@ -34,11 +39,16 @@ Item::~Item() //destructor
 	//intentionally left blank
 }
 
-
+/*****************************************************************************
+**						Item::getTotalPrice
+** Description: Returns totalPrice.
+**
+*****************************************************************************/
 double Item::getTotalPrice()
 {
 	return totalPrice;
 }
+
 /*****************************************************************************
 **						Item::increaseQuantity
 ** Description: Generates and returns a random int from 1 to numSides.
@@ -93,7 +103,9 @@ void Item::operator+(Item a)
 *****************************************************************************/
 std::ostream& operator<<(std::ostream &outs, const Item& foo)
 {
-	outs << foo.name << ": " << foo.quantity << " " << foo.qUnits << " at " << foo.unitPrice << " each for a total cost of " << foo.totalPrice << std::endl;
+	outs << foo.name << ": " << foo.quantity << " " << foo.qUnits << " at " << 
+		foo.unitPrice << " each for a total cost of " << 
+		foo.totalPrice << std::endl;
 
 	return outs;
 }

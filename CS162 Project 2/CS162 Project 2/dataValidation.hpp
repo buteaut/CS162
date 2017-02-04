@@ -12,7 +12,7 @@
 #define DATAVALIDATION_HPP
 
 #include <string>
-
+#include <math.h>
 
 bool intVal(std::string input, int length);
 
