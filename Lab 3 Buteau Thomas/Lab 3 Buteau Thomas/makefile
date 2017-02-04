@@ -1,6 +1,6 @@
 # Makefile for CS162 projects
 # Author: Thomas Buteau
-# Date: 1-14-17
+# # Date: 1-29-17
 CC = gcc
 CXX = g++
 CFLAGS = -std=c99
@@ -11,24 +11,22 @@ LDFLAGS =
 #CXXFLAGS += -Wall
 #CXXFLAGS += -pedantic-errors
 
-OBJS = main.o Ant.o Board.o menu.o integerValidation.o
+OBJS = main.o Game.o Die.o LoadedDie.o integerValidation.o
 
-SRCS = main.cpp Ant.cpp Board.cpp menu.cpp integerValidation.cpp
+SRCS = main.cpp Game.cpp Die.cpp LoadedDie.cpp integerValidation.cpp
 
-HEADERS = Ant.hpp board.hpp menu.hpp integerValidation.hpp
+HEADERS = Game.hpp Die.hpp LoadedDie.hpp integerValidation.hpp
 
-EXEC = "Assignment1"
+EXEC = "Lab3"
 
-all: Assignment1
+#all: Lab3
 
-Assignment1: ${OBJS} ${HEADERS}
+LAB3: ${OBJS} ${HEADERS}
 	${CXX} ${LDFLAGS} ${OBJS} -o ${EXEC}
 
 ${OBJS}: ${SRCS}
 	${CXX} ${CXXFLAGS} -c $(@:.o=.cpp)
 
 clean:
-	rm -f ${OBJS} a.out
-
-cleanall:
 	rm -f ${OBJS} a.out ${EXEC}
+
