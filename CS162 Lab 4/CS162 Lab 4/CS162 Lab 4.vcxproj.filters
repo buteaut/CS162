@@ -33,6 +33,9 @@
     <ClCompile Include="instructor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="dataValidation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="university.hpp">
@@ -48,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="instructor.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dataValidation.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

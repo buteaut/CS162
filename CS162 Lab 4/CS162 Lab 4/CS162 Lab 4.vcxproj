@@ -111,6 +111,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="building.cpp" />
+    <ClCompile Include="dataValidation.cpp" />
     <ClCompile Include="instructor.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="person.cpp" />
@@ -119,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="building.hpp" />
+    <ClInclude Include="dataValidation.hpp" />
     <ClInclude Include="instructor.hpp" />
     <ClInclude Include="person.hpp" />
     <ClInclude Include="student.hpp" />
