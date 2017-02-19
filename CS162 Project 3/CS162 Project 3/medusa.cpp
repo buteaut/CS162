@@ -2,12 +2,9 @@
 ** Program name: Project 3 (Medusa Implementation File)
 ** Author: Thomas Buteau
 ** Date: 2-19-17
-** Description: Medusa implementation file. The Item class has variables for
-**				item name, unit name, unit quantity, unit price, and total price.
-**				There is a getTotalPrice method that returns totalPrice, an
-**				increaseQuantity method that adds the quantity argument to the
-**				object quantity, and operator overloads for == and +. There is
-**				also a friend function to overload the << operator.
+** Description: Medusa implementation file. Attacks with 2D6, defends with 1D6, 
+**				has 3 armor and 8 health. If Medusa gets max damage on attack 
+**				glare is triggered which calls isDead() on opponent.
 **
 *********************************************************************************/
 
@@ -29,6 +26,13 @@ Medusa::~Medusa() //deconstructor
 	//intentionally left blank
 }
 
+/*********************************************************************************
+**								Medusa::attack
+** Description: Rolls dice and sums their total for the damage of the attack.
+**				Reports the outcome and returns an int for the damage. If max 
+**				damage is rolled "Glare" occurs and calls isDead() on opponent.
+**
+*********************************************************************************/
 void Medusa::attack(Fighter* opp)
 {
 	int damage = 0;
@@ -49,6 +53,13 @@ void Medusa::attack(Fighter* opp)
 	}
 }
 
+/*********************************************************************************
+**								Medusa::defense
+** Description: Takes an int damage as an argument and reduces it with a dodge
+**				roll then, if applicable, armor and finally reduces health by
+**				the remaining damage amount. Reporting stats at each step.
+**
+*********************************************************************************/
 void Medusa::defense(int damage)
 {
 	int dodge = 0;
@@ -83,17 +94,42 @@ void Medusa::defense(int damage)
 	}
 }
 
+/*********************************************************************************
+**								Medusa::rollDice
+** Description: Returns an int for a random dice roll of a die with diePow sides.
+**
+*********************************************************************************/
 int Medusa::rollDice(int diePow)
 {
 	return rand() % diePow + 1;
 }
 
+/*********************************************************************************
+**								Medusa::isDead
+** Description: Kill function that sets the Barbarian's health to 0.
+**
+*********************************************************************************/
 void Medusa::isDead()
 {
 	this->health = 0;
 }
 
-int Medusa::getHealth()
+/*********************************************************************************
+**								Medusa::getHealth
+** Description: Returns the health variable.
+**
+*********************************************************************************/
+const int Medusa::getHealth()
 {
 	return this->health;
+}
+
+/*********************************************************************************
+**								Medusa::getName
+** Description: Returns the name variable.
+**
+*********************************************************************************/
+const std::string Medusa::getName()
+{
+	return this->name;
 }

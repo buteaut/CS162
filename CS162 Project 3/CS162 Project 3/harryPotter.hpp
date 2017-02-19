@@ -2,12 +2,10 @@
 ** Program name: Project 3 (HarryPotter Header File)
 ** Author: Thomas Buteau
 ** Date: 2-19-17
-** Description: Harry Potter header file. The Item class has variables for
-**				item name, unit name, unit quantity, unit price, and total price.
-**				There is a getTotalPrice method that returns totalPrice, an
-**				increaseQuantity method that adds the quantity argument to the
-**				object quantity, and operator overloads for == and +. There is
-**				also a friend function to overload the << operator.
+** Description: Harry Potter header file. Harry Potter is a faily generic
+**				fighter with one exception. Attacks with 2D6, defends with 2D6, 
+**				has no armor and 10	health. When health goes beneath 1 the first 
+**				time the method resurrection restores health to 20.
 **
 *********************************************************************************/
 
@@ -38,7 +36,8 @@ public:
 	virtual void isDead();
 	virtual int rollDice(int);
 	void resurrect();
-	virtual int getHealth();
+	virtual const int getHealth();
+	virtual const std::string getName();
 
 };
 

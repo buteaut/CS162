@@ -2,12 +2,9 @@
 ** Program name: Project 3 (Fighter Implementation File)
 ** Author: Thomas Buteau
 ** Date: 2-19-17
-** Description: Fighter implementation file. The Item class has variables for
-**				item name, unit name, unit quantity, unit price, and total price.
-**				There is a getTotalPrice method that returns totalPrice, an
-**				increaseQuantity method that adds the quantity argument to the
-**				object quantity, and operator overloads for == and +. There is
-**				also a friend function to overload the << operator.
+** Description: Fighter implementation file. Template class for all other creature
+**				types. Has methods for attacking and defense as well as other's
+**				that are needed for those two main methods.
 **
 *********************************************************************************/
 
@@ -28,6 +25,12 @@ Fighter::~Fighter() //deconstructor
 	//intentionally left blank
 }
 
+/*********************************************************************************
+**								Fighter::attack
+** Description: Rolls dice and sums their total for the damage of the attack.
+**				Reports the outcome and returns an int for the damage.
+**
+*********************************************************************************/
 void Fighter::attack(Fighter* opp)
 {
 	int damage = 0;
@@ -40,6 +43,13 @@ void Fighter::attack(Fighter* opp)
 
 }
 
+/*********************************************************************************
+**								Fighter::defense
+** Description: Takes an int damage as an argument and reduces it with a dodge
+**				roll then, if applicable, armor and finally reduces health by
+**				the remaining damage amount. Reporting stats at each step.
+**
+*********************************************************************************/
 void Fighter::defense(int damage)
 {
 	int dodge = 0;
@@ -74,17 +84,42 @@ void Fighter::defense(int damage)
 	}
 }
 
+/*********************************************************************************
+**								Fighter::rollDice
+** Description: Returns an int for a random dice roll of a die with diePow sides.
+**
+*********************************************************************************/
 int Fighter::rollDice(int diePow)
 {
 	return rand() % diePow + 1;
 }
 
+/*********************************************************************************
+**								Fighter::isDead
+** Description: Kill function that sets the Barbarian's health to 0.
+**
+*********************************************************************************/
 void Fighter::isDead()
 {
 	this->health = 0;
 }
 
-int Fighter::getHealth()
+/*********************************************************************************
+**								Fighter::getHealth
+** Description: Returns the health variable.
+**
+*********************************************************************************/
+const int Fighter::getHealth()
 {
 	return this->health;
+}
+
+/*********************************************************************************
+**								Fighter::getName
+** Description: Returns the name variable.
+**
+*********************************************************************************/
+const std::string Fighter::getName()
+{
+	return this->name;
 }

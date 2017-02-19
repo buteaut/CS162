@@ -1,20 +1,22 @@
-#include "barbarian.hpp"
-#include "harryPotter.hpp"
-#include "vampire.hpp"
-#include "blueMen.hpp"
-#include "medusa.hpp"
+/*********************************************************************************
+** Program name: Project 3 (Main File)
+** Author: Thomas Buteau
+** Date: 2-19-17
+** Description: Main file for Project 3. 
+**
+*********************************************************************************/
+
+#include "battle.hpp"
 
 int main()
 {
 	srand(time(NULL));
 
-	Medusa* steve = new Medusa();
-	BlueMen* joe = new BlueMen();
+	Battle* b1 = new Battle();
 
-	for (int i = 0; i < 10; i++)
-	{
-		steve->attack(joe);
-	}
+	b1->menu();
+	
+	delete b1;
 
 	return 0;
 }

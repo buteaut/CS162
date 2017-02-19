@@ -2,12 +2,9 @@
 ** Program name: Project 3 (Barbarian Implementation File)
 ** Author: Thomas Buteau
 ** Date: 2-19-17
-** Description: Barbarian implementation file. The Item class has variables for
-**				item name, unit name, unit quantity, unit price, and total price.
-**				There is a getTotalPrice method that returns totalPrice, an
-**				increaseQuantity method that adds the quantity argument to the
-**				object quantity, and operator overloads for == and +. There is
-**				also a friend function to overload the << operator.
+** Description: Barbarian implementation file. The barbarian is a faily generic
+**				fighter. Attacks with 2D6, defends with 2D6, has no armor and 12
+**				health. No special abilities. More city guard than dragonborn.
 **
 *********************************************************************************/
 
@@ -29,6 +26,12 @@ Barbarian::~Barbarian() //deconstructor
 	//intentionally left blank
 }
 
+/*********************************************************************************
+**								Barbarian::attack
+** Description: Rolls dice and sums their total for the damage of the attack.
+**				Reports the outcome and returns an int for the damage.
+**
+*********************************************************************************/
 void Barbarian::attack(Fighter* opp)
 {
 	int damage = 0;
@@ -41,6 +44,13 @@ void Barbarian::attack(Fighter* opp)
 
 }
 
+/*********************************************************************************
+**								Barbarian::defense
+** Description: Takes an int damage as an argument and reduces it with a dodge
+**				roll then, if applicable, armor and finally reduces health by
+**				the remaining damage amount. Reporting stats at each step.
+**
+*********************************************************************************/
 void Barbarian::defense(int damage)
 {
 	int dodge = 0;
@@ -75,17 +85,42 @@ void Barbarian::defense(int damage)
 	}
 }
 
+/*********************************************************************************
+**								Barbarian::rollDice
+** Description: Returns an int for a random dice roll of a die with diePow sides.
+**
+*********************************************************************************/
 int Barbarian::rollDice(int diePow)
 {
 	return rand() % diePow + 1;
 }
 
+/*********************************************************************************
+**								Barbarian::isDead
+** Description: Kill function that sets the Barbarian's health to 0.
+**
+*********************************************************************************/
 void Barbarian::isDead()
 {
 	this->health = 0;
 }
 
-int Barbarian::getHealth()
+/*********************************************************************************
+**								Barbarian::getHealth
+** Description: Returns the health variable.
+**
+*********************************************************************************/
+const int Barbarian::getHealth()
 {
 	return this->health;
+}
+
+/*********************************************************************************
+**								Barbarian::getName
+** Description: Returns the name variable.
+**
+*********************************************************************************/
+const std::string Barbarian::getName()
+{
+	return this->name;
 }

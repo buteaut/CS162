@@ -2,12 +2,10 @@
 ** Program name: Project 3 (HarryPotter Implementation File)
 ** Author: Thomas Buteau
 ** Date: 2-19-17
-** Description: HarryPotter implementation file. The Item class has variables for
-**				item name, unit name, unit quantity, unit price, and total price.
-**				There is a getTotalPrice method that returns totalPrice, an
-**				increaseQuantity method that adds the quantity argument to the
-**				object quantity, and operator overloads for == and +. There is
-**				also a friend function to overload the << operator.
+** Description: HarryPotter implementation file. Harry Potter is a faily generic
+**				fighter with one exception. Attacks with 2D6, defends with 2D6, 
+**				has no armor and 10	health. When health goes beneath 1 the first 
+**				time the method resurrection restores health to 20.
 **
 *********************************************************************************/
 
@@ -30,6 +28,12 @@ HarryPotter::~HarryPotter() //deconstructor
 	//intentionally left blank
 }
 
+/*********************************************************************************
+**								HarryPotter::attack
+** Description: Rolls dice and sums their total for the damage of the attack.
+**				Reports the outcome and returns an int for the damage.
+**
+*********************************************************************************/
 void HarryPotter::attack(Fighter* opp)
 {
 	int damage = 0;
@@ -42,6 +46,14 @@ void HarryPotter::attack(Fighter* opp)
 
 }
 
+/*********************************************************************************
+**								HarryPotter::defense
+** Description: Takes an int damage as an argument and reduces it with a dodge
+**				roll then, if applicable, armor and finally reduces health by
+**				the remaining damage amount. Reporting stats at each step. Will
+**				call resurrect method on first death.
+**
+*********************************************************************************/
 void HarryPotter::defense(int damage)
 {
 	int dodge = 0;
@@ -81,11 +93,22 @@ void HarryPotter::defense(int damage)
 	}
 }
 
+/*********************************************************************************
+**								HarryPotter::rollDice
+** Description: Returns an int for a random dice roll of a die with diePow sides.
+**
+*********************************************************************************/
 int HarryPotter::rollDice(int diePow)
 {
 	return rand() % diePow + 1;
 }
 
+/*********************************************************************************
+**								HarryPotter::isDead
+** Description: Kill function that sets the HarryPotter's health to 0 then if 
+**				this is the first death calls resurrect.
+**
+*********************************************************************************/
 void HarryPotter::isDead()
 {
 	this->health = 0;
@@ -95,6 +118,11 @@ void HarryPotter::isDead()
 	}
 }
 
+/*********************************************************************************
+**								HarryPotter::resurrect
+** Description: Resets health to 20 and flips the bool hasDied.
+**
+*********************************************************************************/
 void HarryPotter::resurrect()
 {
 	std::cout << "Death does not yet seek out this one." << std::endl 
@@ -103,7 +131,22 @@ void HarryPotter::resurrect()
 	this->health = 20;
 }
 
-int HarryPotter::getHealth()
+/*********************************************************************************
+**								HarryPotter::getHealth
+** Description: Returns the health variable.
+**
+*********************************************************************************/
+const int HarryPotter::getHealth()
 {
 	return this->health;
+}
+
+/*********************************************************************************
+**								HarryPotter::getName
+** Description: Returns the name variable.
+**
+*********************************************************************************/
+const std::string HarryPotter::getName()
+{
+	return this->name;
 }

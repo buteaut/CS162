@@ -2,12 +2,9 @@
 ** Program name: Project 3 (Vampire Implementation File)
 ** Author: Thomas Buteau
 ** Date: 2-19-17
-** Description: Vampire implementation file. The Item class has variables for
-**				item name, unit name, unit quantity, unit price, and total price.
-**				There is a getTotalPrice method that returns totalPrice, an
-**				increaseQuantity method that adds the quantity argument to the
-**				object quantity, and operator overloads for == and +. There is
-**				also a friend function to overload the << operator.
+** Description: Vampire implementation file. Attacks with 1D12, defends with 1D6, 
+**				has 1 armor and 18 health. Has "charm" ability which gives 50%
+**				chance to dodge all damage (does not work against Medusa "glare").
 **
 *********************************************************************************/
 
@@ -29,6 +26,12 @@ Vampire::~Vampire() //deconstructor
 	//intentionally left blank
 }
 
+/*********************************************************************************
+**								Vampire::attack
+** Description: Rolls dice and sums their total for the damage of the attack.
+**				Reports the outcome and returns an int for the damage.
+**
+*********************************************************************************/
 void Vampire::attack(Fighter* opp)
 {
 	int damage = 0;
@@ -41,6 +44,14 @@ void Vampire::attack(Fighter* opp)
 
 }
 
+/*********************************************************************************
+**								Vampire::defense
+** Description: Takes an int damage as an argument and reduces it with a dodge
+**				roll then, if applicable, armor and finally reduces health by
+**				the remaining damage amount. Reporting stats at each step. Has a
+**				50% chance to use charm and reduce damage to 0.
+**
+*********************************************************************************/
 void Vampire::defense(int damage)
 {
 	int dodge = 0;
@@ -76,25 +87,56 @@ void Vampire::defense(int damage)
 		}
 	}
 	else
-		std::cout << name << " uses Charm, it's super effective!" << std::endl;
+		std::cout << name << " uses Charm, it's super effective!" << std::endl
+			<< std::endl;
 }
 
+/*********************************************************************************
+**								Vampire::rollDice
+** Description: Returns an int for a random dice roll of a die with diePow sides.
+**
+*********************************************************************************/
 int Vampire::rollDice(int diePow)
 {
 	return rand() % diePow + 1;
 }
 
+/*********************************************************************************
+**								Vampire::isDead
+** Description: Kill function that sets the Barbarian's health to 0.
+**
+*********************************************************************************/
 void Vampire::isDead()
 {
 	this->health = 0;
 }
 
+/*********************************************************************************
+**								Vampire::charm
+** Description: Returns a bool for a random coin flip.
+**
+*********************************************************************************/
 bool Vampire::charm()
 {
 	return rand() % 2; 
 }
 
-int Vampire::getHealth()
+/*********************************************************************************
+**								Vampire::getHealth
+** Description: Returns the health variable.
+**
+*********************************************************************************/
+const int Vampire::getHealth()
 {
 	return this->health;
+}
+
+/*********************************************************************************
+**								Vampire::getName
+** Description: Returns the name variable.
+**
+*********************************************************************************/
+const std::string Vampire::getName()
+{
+	return this->name;
 }

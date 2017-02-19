@@ -2,12 +2,9 @@
 ** Program name: Project 3 (Medusa Header File)
 ** Author: Thomas Buteau
 ** Date: 2-19-17
-** Description: Medusa header file. The Item class has variables for
-**				item name, unit name, unit quantity, unit price, and total price.
-**				There is a getTotalPrice method that returns totalPrice, an
-**				increaseQuantity method that adds the quantity argument to the
-**				object quantity, and operator overloads for == and +. There is
-**				also a friend function to overload the << operator.
+** Description: Medusa header file. Attacks with 2D6, defends with 1D6, 
+**				has 3 armor and 8 health. If Medusa gets max damage on attack 
+**				glare is triggered which calls isDead() on opponent.
 **
 *********************************************************************************/
 
@@ -36,7 +33,8 @@ public:
 	virtual void defense(int);
 	virtual void isDead();
 	virtual int rollDice(int);
-	virtual int getHealth();
+	virtual const int getHealth();
+	virtual const std::string getName();
 
 };
 

@@ -2,12 +2,9 @@
 ** Program name: Project 3 (Vampire Header File)
 ** Author: Thomas Buteau
 ** Date: 2-19-17
-** Description: Vampire header file. The Item class has variables for
-**				item name, unit name, unit quantity, unit price, and total price.
-**				There is a getTotalPrice method that returns totalPrice, an
-**				increaseQuantity method that adds the quantity argument to the
-**				object quantity, and operator overloads for == and +. There is
-**				also a friend function to overload the << operator.
+** Description: Vampire header file. Attacks with 1D12, defends with 1D6, 
+**				has 1 armor and 18 health. Has "charm" ability which gives 50%
+**				chance to dodge all damage (does not work against Medusa "glare").
 **
 *********************************************************************************/
 
@@ -37,7 +34,8 @@ public:
 	virtual void isDead();
 	virtual int rollDice(int);
 	bool charm();
-	virtual int getHealth();
+	virtual const int getHealth();
+	virtual const std::string getName();
 
 };
 
