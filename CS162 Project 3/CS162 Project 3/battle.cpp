@@ -18,8 +18,7 @@ Battle::Battle() //default constructor
 
 Battle::~Battle() //deconstructor
 {
-	delete p1;
-	delete p2;
+	// left blank
 }
 
 /*********************************************************************************

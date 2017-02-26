@@ -19,7 +19,7 @@ HarryPotter::HarryPotter() : Fighter() //default constructor
 	this->defDiePow = 6;
 	this->armor = 0;
 	this->health = 10;
-	this->name = "HarryPotter";
+	this->name = "Harry Potter";
 	this->hasDied = false;
 }
 

@@ -9,7 +9,7 @@
 **
 *********************************************************************************/
 
-#include "bluemen.hpp"
+#include "blueMen.hpp"
 
 BlueMen::BlueMen() : Fighter() //default constructor
 {
