@@ -16,7 +16,7 @@ BlueMen::BlueMen() : Fighter(2,10,3,6,3,12,"Blue Men") //default constructor
 	//intentionally left blank
 }
 
-BlueMen::BlueMen(std::string name) : Fighter(2, 19, 3, 6, 3, 12, name)
+BlueMen::BlueMen(std::string name) : Fighter(2, 10, 3, 6, 3, 12, name)
 {
 	//intentionally left blank
 }

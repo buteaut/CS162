@@ -37,9 +37,9 @@ public:
 	void menu();
 	void fight();
 	Combatants* setP(int, std::string);
-	void addFront(Combatants* toAdd, Combatants* existing);
-	void addBack(Combatants* toAdd, Combatants* existing);
-	Combatants* removeFront(Combatants* foo);
+	void addFront(Combatants* toAdd);
+	void addBack(Combatants* toAdd, int existing);
+	Combatants* removeFront(Combatants* &foo);
 	void delStack(Combatants*);
 
 };

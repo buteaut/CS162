@@ -95,8 +95,9 @@ void HarryPotter::isDead()
 *********************************************************************************/
 void HarryPotter::resurrect()
 {
-	std::cout << "Death does not yet seek out this one." << std::endl 
+	std::cout << "Death does not yet seek out " << this->name << "." << std::endl 
 		<< std::endl;
 	this->hasDied = true;
 	this->health = 20;
+	this->maxHealth = 20;
 }

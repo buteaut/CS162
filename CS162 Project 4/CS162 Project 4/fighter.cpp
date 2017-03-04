@@ -146,5 +146,6 @@ void Fighter::recoup()
 {
 	int missing = maxHealth - health;
 	int percent = rand() % 100 + 1;
-	this->health += (missing * percent) / 100;
+	int recovery = (missing * percent) / 100;
+	this->health += recovery;
 }

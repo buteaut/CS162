@@ -27,7 +27,9 @@ struct Combatants
 
 	~Combatants()
 	{
-		delete person;
+		Fighter* trash = person;
+		person = nullptr;
+		delete trash;
 	}
 };
 
