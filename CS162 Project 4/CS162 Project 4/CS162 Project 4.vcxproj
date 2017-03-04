@@ -124,6 +124,7 @@
     <ClInclude Include="barbarian.hpp" />
     <ClInclude Include="battle.hpp" />
     <ClInclude Include="blueMen.hpp" />
+    <ClInclude Include="combatants.hpp" />
     <ClInclude Include="dataValidation.hpp" />
     <ClInclude Include="fighter.hpp" />
     <ClInclude Include="harryPotter.hpp" />

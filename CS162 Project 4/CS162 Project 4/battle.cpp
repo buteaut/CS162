@@ -13,12 +13,18 @@
 
 Battle::Battle() //default constructor
 {
-
+	this->p1Wins = 0;
+	this->p2Wins = 0;
+	this->p1 = nullptr;
+	this->p2 = nullptr;
+	this->lost = nullptr;
 }
 
 Battle::~Battle() //deconstructor
 {
-	// left blank
+	delStack(p1);
+	delStack(p2);
+	delStack(lost);
 }
 
 /*********************************************************************************
@@ -44,8 +50,12 @@ void Battle::menu()
 		std::cout << "4. Medusa" << std::endl;
 		std::cout << "5. Vampire" << std::endl;
 		int p1Temp = valIntPos(1, 1, 5);
-
-		p1 = setP(p1Temp);
+		std::string name;
+		std::cout << "Enter the name of this fighter." << std::endl;
+		std::cin.clear();
+		std::cin.ignore();
+		std::getline(std::cin, name);
+		p1 = setP(p1Temp, name);
 
 		std::cout << "Choose the second fighter." << std::endl;
 		std::cout << "1. Barbarian" << std::endl;
@@ -123,26 +133,106 @@ void Battle::fight()
 **				type to use. Returns a new creature object of the chosen type.
 **
 *********************************************************************************/
-Fighter* Battle::setP(int fighter, std::string name)
+Combatants* Battle::setP(int fighter, std::string name)
 {
 	if (fighter == 1)
 	{
-		return new Barbarian(name);
+		return new Combatants(new Barbarian(name));
 	}
 	if (fighter == 2)
 	{
-		return new BlueMen(name);
+		return new Combatants(new BlueMen(name));
 	}
 	if (fighter == 3)
 	{
-		return new HarryPotter(name);
+		return new Combatants(new HarryPotter(name));
 	}
 	if (fighter == 4)
 	{
-		return new Medusa(name);
+		return new Combatants(new Medusa(name));
 	}
 	if (fighter == 5)
 	{
-		return new Vampire(name);
+		return new Combatants(new Vampire(name));
 	}
+}
+
+/*********************************************************************************
+**								Battle::addFront
+** Description: Adds the first Combatants pointer argument to the front of the
+**				stack pointed to by the second Combatants pointer argument.
+**
+*********************************************************************************/
+void Battle::addFront(Combatants* toAdd, Combatants* existing)
+{
+	if (existing == nullptr)
+	{
+		existing = toAdd;
+	}
+
+	else
+	{
+		Combatants* second = existing;
+		existing = toAdd;
+		existing->next = second;
+	}
+}
+
+/*********************************************************************************
+**								Battle::addBack
+** Description: Adds the first Combatants pointer argument to the back of the 
+**				stack pointed to by the second Combatants pointer argument.
+**
+*********************************************************************************/
+void Battle::addBack(Combatants* toAdd, Combatants* existing)
+{
+	if (existing == nullptr)
+	{
+		existing = toAdd;
+	}
+
+	else
+	{
+		Combatants* end = existing;
+		while (end->next != nullptr)
+		{
+			end = end->next;
+		}
+		end->next = toAdd;
+	}
+}
+
+/*********************************************************************************
+**								Battle::removeFront
+** Description: Removes the head of the stack the argument points to, calls recoup
+**				on that Combatants' Fighter, and returns the Combatants pointer.
+**
+*********************************************************************************/
+Combatants* Battle::removeFront(Combatants* foo)
+{
+	Combatants* head = foo;
+	foo = foo->next;
+	head->next = nullptr;
+	(head->person)->recoup();
+	return head;
+}
+
+/*********************************************************************************
+**								Battle::delStack
+** Description: Deletes the stack pointed to by the argument.
+**
+*********************************************************************************/
+void Battle::delStack(Combatants* head)
+{
+	if (head != nullptr) //trash collection
+	{
+		Combatants* endPnt = head;
+		while (endPnt->next != nullptr)
+		{
+			Combatants* trash = endPnt;
+			endPnt = endPnt->next;
+			delete trash;
+		}
+	}
+	delete head;
 }

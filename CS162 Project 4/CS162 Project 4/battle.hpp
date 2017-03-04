@@ -18,30 +18,17 @@
 #include "blueMen.hpp"
 #include "medusa.hpp"
 #include "dataValidation.hpp"
+#include "combatants.hpp"
 
 class Battle
 {
 private:
-	Fighter* p1;
-	Fighter* p2;
+	Combatants* p1;
+	Combatants* p2;
+	Combatants* lost;
+	int p1Wins;
+	int p2Wins;
 	int size;
-
-	struct Combatants
-	{
-		Fighter* person;
-		Combatants* next;
-		Combatants* previous;
-
-		Combatants(Fighter* person)
-		{
-			this->person = person;
-		}
-
-		~Combatants()
-		{
-			delete person;
-		}
-	};
 
 public:
 	Battle(); //default constructor
@@ -49,7 +36,11 @@ public:
 
 	void menu();
 	void fight();
-	Fighter* setP(int, std::string);
+	Combatants* setP(int, std::string);
+	void addFront(Combatants* toAdd, Combatants* existing);
+	void addBack(Combatants* toAdd, Combatants* existing);
+	Combatants* removeFront(Combatants* foo);
+	void delStack(Combatants*);
 
 };
 

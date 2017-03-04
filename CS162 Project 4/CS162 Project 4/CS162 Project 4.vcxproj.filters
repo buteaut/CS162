@@ -68,5 +68,8 @@
     <ClInclude Include="vampire.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="combatants.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
