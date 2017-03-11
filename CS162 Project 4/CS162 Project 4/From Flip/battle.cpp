@@ -22,9 +22,21 @@ Battle::Battle() //default constructor
 
 Battle::~Battle() //deconstructor
 {
-	delStack(p1);
-	delStack(p2);
-	delStack(lost);
+	//if (this->p1 != nullptr)
+	//{	
+		delStack(p1);
+	//}
+	//if (this->p2 != nullptr)
+	//{
+		delStack(p2);
+	//}
+	//if (this->lost != nullptr)
+	//{
+		delStack(lost);
+	//}	
+	//delete p1;
+	//delete p2;
+	//delete lost;
 }
 
 /*********************************************************************************
@@ -87,7 +99,6 @@ void Battle::menu()
 		lost = nullptr;
 		p1Wins = 0;
 		p2Wins = 0;
-
 		std::cout << "Would you like to play again? (Y/N)" << std::endl;
 		
 		std::cin >> cont;
@@ -317,9 +328,6 @@ void Battle::delStack(Combatants* head)
 		{
 			Combatants* trash = endPnt;
 			endPnt = endPnt->next;
-			//delete trash->person;
-			//trash->person = nullptr;
-			//trash->next = nullptr;
 			delete trash;
 		}
 	}
