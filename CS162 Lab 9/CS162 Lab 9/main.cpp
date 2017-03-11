@@ -74,13 +74,13 @@ void aveQueue()
 	double average;
 	int rounds;
 
-	std::cout << "Enter the percent chance (1 to 100) to add an item."
+	std::cout << "Enter the percent chance (0 to 100) to add an item."
 		<< std::endl;
-	add = valIntPos(3, 1, 100);
+	add = valIntPos(3, 0, 100);
 
-	std::cout << "Enter the percent chance (1 to 100) to remove an item."
+	std::cout << "Enter the percent chance (0 to 100) to remove an item."
 		<< std::endl;
-	remove = valIntPos(3, 1, 100);
+	remove = valIntPos(3, 0, 100);
 
 	std::cout << "Enter the number of rounds (1 to 100)."
 		<< std::endl;
@@ -89,13 +89,13 @@ void aveQueue()
 	for (int i = 0; i < rounds; i++)
 	{
 		//percentage based chance to add an item
-		if (rand() % 100 + 1 < add)
+		if (rand() % 101 < add)
 		{
 			buffer.push(1);
 		}
 
 		//percentage based chance to remove an item
-		if (!buffer.empty() && rand() % 100 + 1 < remove)
+		if (!buffer.empty() && rand() % 101 < remove)
 		{
 			buffer.pop();
 		}
@@ -112,10 +112,11 @@ void aveQueue()
 			average = buffer.size();
 		}
 
-		std::cout << "For round " << i + 1 << " the average is " << average
-			<< "." << std::endl;
-
+		std::cout << "For round " << i + 1 << " the current buffer size is " 
+			<< buffer.size() << " and the average is " << average << "." 
+			<< std::endl;
 	}
+
 	//cleanup operations
 	add = 0;
 	remove = 0;
