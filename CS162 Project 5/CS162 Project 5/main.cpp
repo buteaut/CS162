@@ -51,9 +51,6 @@ int main()
 	m->setEast(h);
 	m->setItem("patch kit");
 
-	
-	
-
 	Game* g = new Game(ent);
 
 	g->startup();

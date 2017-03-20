@@ -8,7 +8,7 @@
 
 #include "game.hpp"
 
-Game::Game()
+Game::Game() //default constructor
 {
 //determintes OS and sets appropriate 'clear screen' command
 #if defined(_WIN32)
@@ -32,7 +32,7 @@ Game::Game()
 	
 }
 
-Game::Game(Rooms* r)
+Game::Game(Rooms* r) //constructor
 {
 	//determintes OS and sets appropriate 'clear screen' command
 #if defined(_WIN32)
@@ -56,11 +56,16 @@ Game::Game(Rooms* r)
 
 }
 
-Game::~Game()
+Game::~Game() //destructor
 {
 	//left blank for now
 }
 
+/*********************************************************************************
+**								Game::tick
+** Description: Decriments both power and air to simulate time passing.
+**
+*********************************************************************************/
 void Game::tick()
 {
 	if (!elecpatch)
@@ -77,11 +82,22 @@ void Game::tick()
 	}
 }
 
+/*********************************************************************************
+**								Game::clearScreen
+** Description: Clears the terminal screen.
+**
+*********************************************************************************/
 void Game::clearScreen()
 {
 	std::system(clear.c_str());
 }
 
+/*********************************************************************************
+**								Game::writeStatus
+** Description: Writes the current air and power supplies as well as the current
+**				room name to the terminal.
+**
+*********************************************************************************/
 void Game::writeStatus()
 {
 	std::cout << "Air supply" << std::setw(40) << std::right << "Current location"
@@ -93,17 +109,32 @@ void Game::writeStatus()
 	std::cout << std::endl;
 }
 
+/*********************************************************************************
+**								Game::writeDes
+** Description: Writes the current room's description to the terminal.
+**
+*********************************************************************************/
 void Game::writeDes()
 {
 	std::cout << currentLocation->getDescription() << std::endl << std::endl;
 }
 
+/*********************************************************************************
+**								Game::writeEvents
+** Description: Writes the current events to the terminal.
+**
+*********************************************************************************/
 void Game::writeEvents()
 {
 	std::cout << events << std::endl << std::endl;
 	events = "";
 }
 
+/*********************************************************************************
+**								Game::writeMenu
+** Description: Write the menu of options to the terminal.
+**
+*********************************************************************************/
 void Game::writeMenu()
 {
 	std::cout << "1: Go north" << std::endl;
@@ -117,6 +148,12 @@ void Game::writeMenu()
 
 }
 
+/*********************************************************************************
+**								Game::endGame
+** Description: Method to get room information back to game class. Number
+**				returned is used by Game::action to flip conditional triggers.
+**
+*********************************************************************************/
 void Game::endGame()
 {
 	this->clearScreen();
@@ -177,6 +214,13 @@ void Game::endGame()
 	std::getline(std::cin, foo);
 }
 
+/*********************************************************************************
+**								Game::addItem
+** Description: Checks if the current room has items. If so, it will add it to 
+**				the player inventory. If the player inventory is full it will
+**				call the exchangeItem method to switch items.
+**
+*********************************************************************************/
 void Game::addItem()
 {
 	if (currentLocation->itemReport() != 0)
@@ -221,6 +265,11 @@ void Game::addItem()
 	}
 }
 
+/*********************************************************************************
+**								Game::exchangeItem
+** Description: Transfers items between the Game object and the current Room;
+**
+*********************************************************************************/
 void Game::exchangeItem(int foo)
 {
 	if (foo = 1) //exchange first inventory item with room
@@ -259,6 +308,11 @@ void Game::exchangeItem(int foo)
 		std::cout << "Error with exhangeItem" << std::endl;
 }
 
+/*********************************************************************************
+**								Game::travel
+** Description: Changes the current room to the chosen connected room.
+**
+*********************************************************************************/
 void Game::travel(int foo)
 {
 	if (foo == 1) //north
@@ -307,6 +361,12 @@ void Game::travel(int foo)
 	}
 }
 
+/*********************************************************************************
+**								Game::search
+** Description: Changes events to reflect if there are any items or actions in 
+**				the current room.
+**
+*********************************************************************************/
 void Game::search()
 {
 	std::string roomItem = "";
@@ -332,6 +392,12 @@ void Game::search()
 	}
 }
 
+/*********************************************************************************
+**								Game::action
+** Description: Carries out an action on the current room if able. Will change
+**				airpatch or elecpatch as needed.
+**
+*********************************************************************************/
 void Game::action()
 {
 	if (currentLocation->hasAction() != "")
@@ -390,6 +456,11 @@ void Game::action()
 	}
 }
 
+/*********************************************************************************
+**								Game::menu
+** Description: Menu method which will call other game methods.
+**
+*********************************************************************************/
 void Game::menu()
 {
 	int choice = valIntPos(1,1,7);
@@ -425,6 +496,11 @@ void Game::menu()
 
 }
 
+/*********************************************************************************
+**								Game::play
+** Description: Runs the game until the exit conditions have been met.
+**
+*********************************************************************************/
 void Game::play()
 {
 	while (!exit)
@@ -446,6 +522,11 @@ void Game::play()
 	endGame();
 }
 
+/*********************************************************************************
+**								Game::startup
+** Description: Start-up menu and game introduction.
+**
+*********************************************************************************/
 void Game::startup()
 {
 	bool exit = false;

@@ -20,21 +20,31 @@ std::string hallwayAlt = "This is the hallway. An inspection of the patch shows 
 + std::string("To the west is the maintenance room.");
 
 Hallway::Hallway() : Rooms(NULL, NULL, NULL, NULL, hallwayDes,
-	hallwayAlt, "Hallway")
+	hallwayAlt, "Hallway") //constructor
 {
 
 }
 
-Hallway::~Hallway()
+Hallway::~Hallway() //destructor
 {
 	//left blank
 }
 
+/*********************************************************************************
+**								Hallway::hasAction
+** Description: Returns the name of the item required to perform an action.
+**
+*********************************************************************************/
 std::string Hallway::hasAction()
 {
 	return "patch kit";
 }
 
+/*********************************************************************************
+**								Hallway::actionDescription
+** Description: Returns a decription of the action available for this room.
+**
+*********************************************************************************/
 std::string Hallway::actionDescription()
 {
 	std::string actionDes = "With a proper patch kit this leak could be significantly"
@@ -43,6 +53,12 @@ std::string Hallway::actionDescription()
 	return actionDes;
 }
 
+/*********************************************************************************
+**								Hallway::action
+** Description: Method to get room information back to game class. Number
+**				returned is used by Game::action to flip conditional triggers.
+**
+*********************************************************************************/
 int Hallway::action()
 {
 	finished = true;

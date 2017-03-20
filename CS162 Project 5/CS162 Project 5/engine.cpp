@@ -16,21 +16,31 @@ std::string engineDes = "This is the engine room. The reactor appears to be "
 std::string engineAlt = "";
 
 Engine::Engine() : Rooms(NULL, NULL, NULL, NULL, engineDes,
-	engineAlt, "Engine Room")
+	engineAlt, "Engine Room") //constructor
 {
 
 }
 
-Engine::~Engine()
+Engine::~Engine() //destructor
 {
 	//left blank
 }
 
+/*********************************************************************************
+**								Engine::hasAction
+** Description: Returns the name of the item required to perform an action.
+**
+*********************************************************************************/
 std::string Engine::hasAction()
 {
 	return "engine lockout key";
 }
 
+/*********************************************************************************
+**								Engine::actionDescription
+** Description: Returns a decription of the action available for this room.
+**
+*********************************************************************************/
 std::string Engine::actionDescription()
 {
 	std::string actionDes = "The reactor will need to be restarted. If the short isn't"
@@ -41,6 +51,12 @@ std::string Engine::actionDescription()
 	return actionDes;
 }
 
+/*********************************************************************************
+**								Engine::action
+** Description: Method to get room information back to game class. Number
+**				returned is used by Game::action to flip conditional triggers.
+**
+*********************************************************************************/
 int Engine::action()
 {
 	finished = true;

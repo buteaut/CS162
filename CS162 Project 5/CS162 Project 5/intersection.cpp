@@ -16,12 +16,12 @@ std::string intersectionDes = "This is an intersection. There doesn't appear to 
 
 
 Intersection::Intersection() : Rooms(NULL, NULL, NULL, NULL, intersectionDes,
-	"", "Intersection")
+	"", "Intersection") //constructor
 {
 
 }
 
-Intersection::~Intersection()
+Intersection::~Intersection() //destructor
 {
 	//left blank
 }

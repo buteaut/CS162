@@ -14,12 +14,12 @@ std::string engineeringDes = "This is the engineering supply room. Each wall is 
 
 
 Engineering::Engineering() : Rooms(NULL, NULL, NULL, NULL, engineeringDes,
-	"", "Engineering Supply Room")
+	"", "Engineering Supply Room") //constructor
 {
 
 }
 
-Engineering::~Engineering()
+Engineering::~Engineering() //deconstructor
 {
 	//left blank
 }

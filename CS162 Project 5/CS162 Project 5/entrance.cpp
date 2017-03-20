@@ -14,12 +14,12 @@ std::string entranceDes = "This is the crew quarters. Everything seems a bit dis
 
 
 Entrance::Entrance() : Rooms(NULL, NULL, NULL, NULL, entranceDes,
-	"", "Crew Quarters")
+	"", "Crew Quarters") //constructor
 {
 
 }
 
-Entrance::~Entrance()
+Entrance::~Entrance() //destructor
 {
 	//left blank
 }

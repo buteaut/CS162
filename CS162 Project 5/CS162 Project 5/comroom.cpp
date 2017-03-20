@@ -18,21 +18,31 @@ std::string comroomAlt = "This is the communications room. The diplays glow "
 + std::string("\nTo the west is an intersection.");
 
 ComRoom::ComRoom() : Rooms(NULL, NULL, NULL, NULL, comroomDes,
-	comroomAlt, "Communications Room")
+	comroomAlt, "Communications Room") //constructor
 {
 
 }
 
-ComRoom::~ComRoom()
+ComRoom::~ComRoom() //destructor
 {
 	//left blank
 }
 
+/*********************************************************************************
+**								ComRoom::hasAction
+** Description: Returns the name of the item required to perform an action.
+**
+*********************************************************************************/
 std::string ComRoom::hasAction()
 {
 	return "tool kit";
 }
 
+/*********************************************************************************
+**								ComRoom::actionDescription
+** Description: Returns a decription of the action available for this room.
+**
+*********************************************************************************/
 std::string ComRoom::actionDescription()
 {
 	std::string actionDes = "You see the source of the electrical short and "
@@ -42,6 +52,12 @@ std::string ComRoom::actionDescription()
 	return actionDes;
 }
 
+/*********************************************************************************
+**								ComRoom::action
+** Description: Method to get room information back to game class. Number
+**				returned is used by Game::action to flip conditional triggers.
+**
+*********************************************************************************/
 int ComRoom::action()
 {
 	finished = true;

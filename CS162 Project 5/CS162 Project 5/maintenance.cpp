@@ -13,12 +13,12 @@ std::string maintenanceDes = "This is the maintenance room. Each wall is lined "
 
 
 Maintenance::Maintenance() : Rooms(NULL, NULL, NULL, NULL, maintenanceDes,
-	"", "Maintenance Room")
+	"", "Maintenance Room") //constructor
 {
 
 }
 
-Maintenance::~Maintenance()
+Maintenance::~Maintenance() //destructor
 {
 	//left blank
 }
