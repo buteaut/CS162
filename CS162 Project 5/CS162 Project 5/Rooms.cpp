@@ -89,6 +89,17 @@ std::string Rooms::hasAction()
 	return "";
 }
 
+/*********************************************************************************
+**								Rooms::actionDescription
+** Description: Returns a decription of the action available for this room.
+**
+*********************************************************************************/
+std::string Rooms::actionDescription()
+{
+	std::string des = "";
+	return des;
+}
+
 int Rooms::action()
 {
 	return 0;

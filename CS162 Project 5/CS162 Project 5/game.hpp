@@ -9,14 +9,16 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#include<iostream>
-#include<string>
-#include<iomanip>
-#include<cstdlib>
-#include<vector>
-#include"rooms.hpp"
-#include"entrance.hpp"
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
+#include <random>
+#include <string>
+#include <vector>
+
 #include "dataValidation.hpp"
+#include "entrance.hpp"
+#include "rooms.hpp"
 
 class Game
 {
@@ -25,6 +27,7 @@ protected:
 	int power;
 	bool airpatch;
 	bool elecpatch;
+	bool gambling;
 	bool exit;
 	std::string clear;
 	Rooms* currentLocation;
@@ -68,6 +71,8 @@ public:
 	void menu();
 
 	void play();
+
+	void startup();
 };
 
 #endif

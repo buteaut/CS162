@@ -7,55 +7,61 @@
 *********************************************************************************/
 
 #include "game.hpp"
+#include "comroom.hpp"
+#include "engine.hpp"
+#include "engineering.hpp"
 #include "entrance.hpp"
+#include "hallway.hpp"
+#include "intersection.hpp"
+#include "maintenance.hpp"
+#include <random>
+#include <time.h>
 
 int main()
-
 {
-	/*
-	std::string clear;
-	std::string width;
+	srand(time(NULL));
+	Entrance* ent = new Entrance();
+	Hallway* h = new Hallway;
+	Intersection* i = new Intersection();
+	Maintenance* m = new Maintenance();
+	Engine* eng = new Engine();
+	ComRoom* c = new ComRoom();
+	Engineering* engr = new Engineering();
 
-#if defined(_WIN32)
-	{
-		clear = "cls";
-	}
-#endif
+	c->setWest(i);
+	c->setItem("engine lockout key");
 
-#if defined(__linux__)
-	{
-		clear = "clear";
-	}
-#endif
+	eng->setEast(i);
 
-	std::cout << "You shouldn't see this." << std::endl;
+	engr->setSouth(i);
+	engr->setItem("tool kit");
+
+	ent->setNorth(h);
+	ent->setItem("jacket");
+
+	h->setNorth(i);
+	h->setSouth(ent);
+	h->setWest(m);
+
+	i->setSouth(h);
+	i->setWest(eng);
+	i->setEast(c);
+	i->setNorth(engr);
+
+	m->setEast(h);
+	m->setItem("patch kit");
+
 	
-	std::system(clear.c_str());
-	std::cout.width(80);
-	//std::setw(80);
-	std::cout << std::left << "But you should see this." <<  std::right << "this too." << std::endl;
-	std::cout << std::setw(89) << std::setfill('=') << std::right << "" << std::endl;
-	std::cout << std::left << "But you should see this." << std::right << "this too." << std::endl;
-	std::cout << std::setw(89) << std::setfill('=') << std::right << "" << std::endl;
-	std::cout << "Air supply" << std::setw(40) << std::right << "Current location" << std::setw(40) << std::right << "Power remaining" << std::endl;
-	std::cout << "The damage to the hull has been repaired, and the reactor "
-		<< "has been stabilized. A sign of relief turns into a groan as you "
-		<< "look at your watch and see your shift starts in 7 minutes."
-		<< std::endl << std::endl << std::endl;
-	std::cout << "Game over." << std::endl;
 	
-	std::string location = "Crew Quarters";
-	std::cout << "Air supply" << std::setw(40) << std::right << "Current location"
-		<< std::setw(40) << std::right << "Power remaining" << std::endl;
-	std::cout << 100 << "%" << std::setw(46) << std::right
-		<< location << std::setw(46 - location.length()) << std::right << 100
-		<< "%" << std::endl;
-	return 0;
-	*/
-	Entrance* e = new Entrance();
-	Game* g = new Game(e);
 
-	g->play();
+	Game* g = new Game(ent);
+
+	g->startup();
+
+	delete g;
+	delete ent;
+	delete h;
+	delete i;
 
 	return 0;
 }

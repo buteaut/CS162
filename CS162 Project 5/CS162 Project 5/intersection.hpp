@@ -1,24 +1,24 @@
 /*********************************************************************************
-** Program name: Project 5 (Entrance Header File)
+** Program name: Project 5 (Intersection Header File)
 ** Author: Thomas Buteau
 ** Date: 3-21-17
-** Description: Entrance header file. 
+** Description: Intersection header file.
 **
 *********************************************************************************/
 
-#ifndef ENTRANCE_HPP
-#define ENTRANCE_HPP
+#ifndef INTERSECTION_HPP
+#define INTERSECTION_HPP
 
 #include "rooms.hpp"
 
-class Entrance : public Rooms
+class Intersection : public Rooms
 {
 protected:
 
 public:
-	Entrance();
+	Intersection();
 
-	virtual ~Entrance();
+	virtual ~Intersection();
 
 };
 

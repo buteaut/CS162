@@ -1,25 +1,26 @@
 /*********************************************************************************
-** Program name: Project 5 (Entrance Header File)
+** Program name: Project 5 (Engineering Header File)
 ** Author: Thomas Buteau
 ** Date: 3-21-17
-** Description: Entrance header file. 
+** Description: Engineering header file.
 **
 *********************************************************************************/
 
-#ifndef ENTRANCE_HPP
-#define ENTRANCE_HPP
+#ifndef ENGINEERING_HPP
+#define ENGINEERING_HPP
 
 #include "rooms.hpp"
 
-class Entrance : public Rooms
+class Engineering : public Rooms
 {
 protected:
 
 public:
-	Entrance();
+	Engineering();
 
-	virtual ~Entrance();
+	virtual ~Engineering();
 
 };
 
 #endif
+

@@ -27,6 +27,7 @@ Game::Game()
 	this->power = 100;
 	this->airpatch = false;
 	this->elecpatch = false;
+	this->gambling = false;
 	this->exit = false;
 	
 }
@@ -62,7 +63,10 @@ Game::~Game()
 
 void Game::tick()
 {
-	--power;
+	if (!elecpatch)
+	{
+		--power;
+	}
 	if (!airpatch)
 	{
 		air -= 5;
@@ -117,14 +121,14 @@ void Game::endGame()
 {
 	this->clearScreen();
 
-	if (this->air < 1)
+	if (this->air < 1) //out of air
 	{
 		std::cout << "As the last of the air runs out you wonder what you could "
 			<< "have done differently." << std::endl << std::endl << std::endl;
 		std::cout << "Game over." << std::endl;
 	}
 
-	else if (this->power < 1)
+	else if (this->power < 1) //out of power
 	{
 		std::cout << "The hum of the engines dies. An ominous silence envelops "
 			<< "you as you sit in the dark pondering how long the air supply "
@@ -132,17 +136,35 @@ void Game::endGame()
 		std::cout << "Game over." << std::endl;
 	}
 
-	else if (this->airpatch == true && this->elecpatch == true)
+	else if (this->airpatch == true && this->elecpatch == true) //all issues fixed
 	{
 		std::cout << "The damage to the hull has been repaired, and the reactor "
-			<< "has been stabilized. A sigh of relief turns into a groan as you "
-			<< "look at your watch and see your shift starts in 7 minutes."
+			<< "has been stabilized. \nA sigh of relief turns into a groan as you "
+			<< "look at your watch and see your shift \nstarts in 7 minutes."
 			<< std::endl << std::endl << std::endl;
 		std::cout << "Game over." << std::endl;
 	}
 
-	else
+	else if (this->gambling == true && this->airpatch == true) //fixed reactor without fixing short
 	{
+		std::cout << "You know that with the short in the system there is only a "
+			<< "10% chance the reactor will \nrestart successfully. Maybe it is the"
+			<< " lowered oxygen level, but you're feeling lucky as \nyou reset the "
+			<< "system.";
+		std::cout << std::endl << std::endl;
+		std::cout << "Your reckless endangerment of the ship and crew paid off "
+			<< "this time. Best not let the \ncaptain know of your gambling ways."
+			<< std::endl << std::endl << std::endl;
+		std::cout << "Game over." << std::endl;
+	}
+
+	else //failed
+	{
+		std::cout << "You know that with the short in the system there is only a "
+			<< "10% chance the reactor will \nrestart successfully. Maybe it is the"
+			<< " lowered oxygen level, but you're feeling lucky as \nyou reset the "
+			<< "system.";
+		std::cout << std::endl << std::endl;
 		std::cout << "You have failed at your mission. The entire crew is doomed "
 			<< "to die." << std::endl << std::endl << std::endl;
 		std::cout << "Game over." << std::endl;
@@ -163,10 +185,9 @@ void Game::addItem()
 		{
 			int choice;
 			events = "You will have to drop something if you want to take another item.";
-			//events += '/n';
-			events += "1. Drop the " + inventory.front() + " and take the " + currentLocation->itemName();
-			events += "2. Drop the " + inventory.back() + " and take the " + currentLocation->itemName();
-			events += "3. Keep current items and leave the " + currentLocation->itemName();
+			events += "\n1. Drop the " + inventory.front() + " and take the " + currentLocation->itemName();
+			events += "\n2. Drop the " + inventory.back() + " and take the " + currentLocation->itemName();
+			events += "\n3. Keep current items and leave the " + currentLocation->itemName();
 
 			clearScreen();
 			writeStatus();
@@ -240,7 +261,7 @@ void Game::exchangeItem(int foo)
 
 void Game::travel(int foo)
 {
-	if (foo = 1) //north
+	if (foo == 1) //north
 	{
 		if (currentLocation->getNorth() == NULL)
 		{
@@ -251,7 +272,7 @@ void Game::travel(int foo)
 			currentLocation = currentLocation->getNorth();
 		}
 	}
-	if (foo = 2) //south
+	if (foo == 2) //south
 	{
 		if (currentLocation->getSouth() == NULL)
 		{
@@ -262,7 +283,7 @@ void Game::travel(int foo)
 			currentLocation = currentLocation->getSouth();
 		}
 	}
-	if (foo = 3) //east
+	if (foo == 3) //east
 	{
 		if (currentLocation->getEast() == NULL)
 		{
@@ -273,7 +294,7 @@ void Game::travel(int foo)
 			currentLocation = currentLocation->getEast();
 		}
 	}
-	if (foo = 4) //south
+	if (foo == 4) //south
 	{
 		if (currentLocation->getWest() == NULL)
 		{
@@ -290,6 +311,7 @@ void Game::search()
 {
 	std::string roomItem = "";
 	std::string roomAction = currentLocation->hasAction();
+	std::string roomDes = currentLocation->actionDescription();
 
 	if (currentLocation->itemReport() > 0)
 	{
@@ -298,11 +320,11 @@ void Game::search()
 	
 	if (roomItem != "")
 	{
-		events += "After searching the room you find " + roomItem + ". ";
+		events += "After searching the room you find " + roomItem + ". \n";
 	}
 	if (roomAction != "")
 	{
-		events += roomAction;
+		events += roomDes;
 	}
 	if (roomAction == "" && roomItem == "")
 	{
@@ -314,18 +336,50 @@ void Game::action()
 {
 	if (currentLocation->hasAction() != "")
 	{
-		int action = currentLocation->action();
-		if (action = 1)
+		if (inventory.size() > 0 && (inventory.front() == currentLocation->hasAction()
+			|| inventory.back() == currentLocation->hasAction()))
 		{
-			airpatch = true;
+			int action = currentLocation->action();
+			if (action == 1)
+			{
+				airpatch = true;
+				events = "The patch on the hull has slowed the air leak";
+				events += " by 80%. You've bought enough time to solve \nthe ";
+				events += "rest of the ships problems before someone has to ";
+				events += "go outside to finish sealing the leak.";
+			}
+			if (action == 2)
+			{
+				elecpatch = true;
+				events = "Utilizing your toolkit you manage to fix the short";
+				events += " in the electrical system.";
+			}
+			if (action == 3)
+			{
+				exit = true;
+				if (elecpatch)
+				{
+					events = "With the short in the system repaired you restart";
+					events += " the reactor, confident that it will work.";
+				}
+				else
+				{
+					int chance = rand() % 100 + 1;
+					events = "You know that with the short in the system there";
+					events += " is only a 10% chance the reactor will restart ";
+					events += "successfully. Maybe it is the lowered oxygen ";
+					events += "level, but you're feeling lucky as you reset the";
+					events += " system.";
+					if (chance >= 90)
+					{
+						gambling = true;
+					}
+				}
+			}
 		}
-		if (action = 2)
+		else
 		{
-			elecpatch = true;
-		}
-		if (action = 3)
-		{
-			exit = true;
+			events = "You don't have the right equipment to do that.";
 		}
 	}
 
@@ -340,7 +394,19 @@ void Game::menu()
 {
 	int choice = valIntPos(1,1,7);
 
-	if (choice <= 4)
+	if (choice == 1)
+	{
+		travel(choice);
+	}
+	if (choice == 2)
+	{
+		travel(choice);
+	}
+	if (choice == 3)
+	{
+		travel(choice);
+	}
+	if (choice == 4)
 	{
 		travel(choice);
 	}
@@ -378,4 +444,63 @@ void Game::play()
 	}
 
 	endGame();
+}
+
+void Game::startup()
+{
+	bool exit = false;
+
+	std::cout << "CS162 Project 5: A day in the life of a spacer" << std::endl 
+		<< std::endl;
+
+	while (!exit)
+	{
+		std::cout << "1. Play game" << std::endl;
+		std::cout << "2. Walkthrough" << std::endl;
+		std::cout << "3. Exit" << std::endl;
+
+		int choice = valIntPos(1, 1, 3);
+
+		if (choice == 1)
+		{
+			clearScreen();
+			std::cout << std::endl;
+			std::cout << "After pulling a double shift recalibrating the life support \n";
+			std::cout << "system you finally get a chance to lay down on your bunk for \n";
+			std::cout << "some well deserved rest. As you close your eyes you hear \n";
+			std::cout << "several loud pops and your comlink begins to ring. \"Jack,\n";
+			std::cout << "we just got his with micrometerorites and you're the only one\n";
+			std::cout << "on that side of the ship. There's a couple big problems here. \n";
+			std::cout << "First, your wing of the ship is leaking air fast. Second, \n";
+			std::cout << "something has shorted out in the communications room and it has\n";
+			std::cout << "destabilized the reactor. The safety system has locked us out of\n";
+			std::cout << "your part of the ship so you'll have to get the reactor fixed \n";
+			std::cout << "before we can get to you. I have Frank suiting up to fix the \n";
+			std::cout << "holes on the outside of the ship but he won't get there before\n";
+			std::cout << "you run out of air to breathe. You'll have to find a way to \n";
+			std::cout << "patch the holes and hope it holds until Frank can get to it.\n";
+			std::cout << "Good luck, we're counting on you. Adams out.\" \nSeems like ";
+			std::cout << "there's always something trying to kill you on this ship.";
+			std::cout << std::endl << std::endl;
+			std::cout << "Press enter to continue." << std::endl;
+			std::cin.clear();
+			std::cin.ignore();
+			std::string exit;
+			std::getline(std::cin, exit);
+			play();
+			exit = true;
+		}
+
+		if (choice == 2)
+		{
+			std::cout << "north, west, take item, east, use item, north, "
+				<< "north, take item, south, east, use item, west, "
+				<< "west, action" << std::endl << std::endl;
+		}
+
+		if (choice == 3)
+		{
+			exit = true;
+		}
+	}
 }

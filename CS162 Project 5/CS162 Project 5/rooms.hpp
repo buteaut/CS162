@@ -33,7 +33,7 @@ public:
 	Rooms(Rooms* N, Rooms* S, Rooms* E, Rooms* W, std::string des,
 		std::string altDes, std::string name);
 
-	virtual ~Rooms();
+	virtual ~Rooms() = 0;
 
 	virtual void setNorth(Rooms*);
 	virtual void setSouth(Rooms*);
@@ -46,6 +46,7 @@ public:
 	virtual Rooms* getWest();
 
 	virtual std::string hasAction();
+	virtual std::string actionDescription();
 	virtual int action();
 	virtual std::string getDescription();
 	virtual std::string getName();
@@ -53,7 +54,7 @@ public:
 	virtual std::string getItem();
 	virtual std::string itemName();
 	virtual void setItem(std::string);
-	virtual void test() = 0;
+
 
 
 

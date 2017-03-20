@@ -1,24 +1,24 @@
 /*********************************************************************************
-** Program name: Project 5 (Entrance Header File)
+** Program name: Project 5 (Maintenance Header File)
 ** Author: Thomas Buteau
 ** Date: 3-21-17
-** Description: Entrance header file. 
+** Description: Maintenance header file.
 **
 *********************************************************************************/
 
-#ifndef ENTRANCE_HPP
-#define ENTRANCE_HPP
+#ifndef MAINTENANCE_HPP
+#define MAINTENANCE_HPP
 
 #include "rooms.hpp"
 
-class Entrance : public Rooms
+class Maintenance : public Rooms
 {
 protected:
 
 public:
-	Entrance();
+	Maintenance();
 
-	virtual ~Entrance();
+	virtual ~Maintenance();
 
 };
 

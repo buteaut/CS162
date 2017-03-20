@@ -8,7 +8,12 @@
 
 #include "entrance.hpp"
 
-Entrance::Entrance() : Rooms(NULL, NULL, NULL, NULL, "This is the crew quarters. everything seems a bit disheveled. The lockers along the wall are partially open and clothings and misc items are spilled out of some of them",
+std::string entranceDes = "This is the crew quarters. Everything seems a bit disheveled."
++ std::string(" The lockers along the wall \nare partially open and clothings and misc items ")
++ std::string("are spilled out of some of them. \nTo the north is the hallway.");
+
+
+Entrance::Entrance() : Rooms(NULL, NULL, NULL, NULL, entranceDes,
 	"", "Crew Quarters")
 {
 
@@ -19,7 +24,3 @@ Entrance::~Entrance()
 	//left blank
 }
 
-void Entrance::test()
-{
-
-}

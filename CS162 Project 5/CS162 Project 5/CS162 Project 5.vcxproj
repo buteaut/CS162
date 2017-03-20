@@ -110,16 +110,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="comroom.cpp" />
     <ClCompile Include="dataValidation.cpp" />
+    <ClCompile Include="engine.cpp" />
+    <ClCompile Include="engineering.cpp" />
     <ClCompile Include="entrance.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="hallway.cpp" />
+    <ClCompile Include="intersection.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="maintenance.cpp" />
     <ClCompile Include="Rooms.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="comroom.hpp" />
     <ClInclude Include="dataValidation.hpp" />
+    <ClInclude Include="engine.hpp" />
+    <ClInclude Include="engineering.hpp" />
     <ClInclude Include="entrance.hpp" />
     <ClInclude Include="game.hpp" />
+    <ClInclude Include="hallway.hpp" />
+    <ClInclude Include="intersection.hpp" />
+    <ClInclude Include="maintenance.hpp" />
     <ClInclude Include="rooms.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
