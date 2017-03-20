@@ -58,10 +58,14 @@ int main()
 
 	g->startup();
 
-	delete g;
 	delete ent;
 	delete h;
 	delete i;
+	delete m;
+	delete eng;
+	delete c;
+	delete engr;
+	delete g;
 
 	return 0;
 }

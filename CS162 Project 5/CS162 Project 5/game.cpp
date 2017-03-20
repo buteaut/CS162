@@ -173,8 +173,8 @@ void Game::endGame()
 	std::cout << "Press enter to quit." << std::endl;
 	std::cin.clear();
 	std::cin.ignore();
-	std::string exit;
-	std::getline(std::cin, exit);
+	std::string foo;
+	std::getline(std::cin, foo);
 }
 
 void Game::addItem()
@@ -485,8 +485,8 @@ void Game::startup()
 			std::cout << "Press enter to continue." << std::endl;
 			std::cin.clear();
 			std::cin.ignore();
-			std::string exit;
-			std::getline(std::cin, exit);
+			std::string foo;
+			std::getline(std::cin, foo);
 			play();
 			exit = true;
 		}
